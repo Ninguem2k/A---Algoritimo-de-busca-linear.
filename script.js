@@ -36,7 +36,7 @@ var nodes = [
         adjacencias: ["São Joaquim"],
         color: "white",
     },
-    { id: 8, label: "Pandeiros", adjacencias: [], color: "white" },
+    { id: 8, label: "Pandeiros", adjacencias: ["Tejuco"], color: "white" },
     { id: 9, label: "Tejuco", adjacencias: ["Januaria"], color: "white" },
     {
         id: 10,
@@ -71,7 +71,7 @@ var nodes = [
     {
         id: 20,
         label: "Pedras de Maria da Cruz",
-        adjacencias: ["Januaria"],
+        adjacencias: [],
         color: "white",
     },
 ];
@@ -125,7 +125,10 @@ var node = svg
     .style("fill", function (d) {
         return d.color;
     })
-    .attr("class", "node");
+    .attr("class", "node")
+    .attr("data-id", function (d) {
+        return d.id;
+    });
 
 node.append("circle").attr("r", 10);
 
@@ -227,6 +230,8 @@ if (caminho) {
     console.log("Não há caminho entre os nós.");
 }
 
+var arrayNode = document.getElementsByClassName("node");
+
 function drawn(caminho, res) {
     var array = Array.from(visitados);
 
@@ -234,8 +239,8 @@ function drawn(caminho, res) {
         if (index >= array.length) {
             if (res) {
                 drawnCaminho(caminho);
+                return;
             }
-            return;
         }
 
         const element = array[index];
@@ -244,10 +249,11 @@ function drawn(caminho, res) {
         });
 
         if (sourceNode.id > 2) {
-            var cl = sourceNode.id + 20;
-            document.querySelector(
-                "body > div > center > svg > g:nth-child(" + cl + ")"
-            ).style.fill = "yellow";
+            for (let index = 0; index < arrayNode.length; index++) {
+                if (arrayNode[index].getAttribute("data-id") == sourceNode.id) {
+                    arrayNode[index].style.fill = "yellow";
+                }
+            }
         }
         setTimeout(function () {
             loop(index + 1, array, nodes);
@@ -258,19 +264,6 @@ function drawn(caminho, res) {
 }
 
 function drawnCaminho(caminho) {
-    // for (let index = 0; index < caminho.length; index++) {
-    //     const element = caminho[index];
-    //     var sourceNode = nodes.find(function (node) {
-    //         return node.label === element;
-    //     });
-
-    //     if (sourceNode.id > 2) {
-    //         var cl = sourceNode.id + 20;
-    //         document.querySelector(
-    //             "body > div > center > svg > g:nth-child(" + cl + ")"
-    //         ).style.fill = "blue";
-    //     }
-    // }
     function loop(index, array) {
         if (index >= array.length) {
             return;
@@ -282,10 +275,11 @@ function drawnCaminho(caminho) {
         });
 
         if (sourceNode.id > 2) {
-            var cl = sourceNode.id + 20;
-            document.querySelector(
-                "body > div > center > svg > g:nth-child(" + cl + ")"
-            ).style.fill = "blue";
+            for (let index = 0; index < arrayNode.length; index++) {
+                if (arrayNode[index].getAttribute("data-id") == sourceNode.id) {
+                    arrayNode[index].style.fill = "blue";
+                }
+            }
         }
         setTimeout(function () {
             loop(index + 1, array, nodes);
