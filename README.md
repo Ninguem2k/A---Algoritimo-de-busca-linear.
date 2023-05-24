@@ -40,7 +40,7 @@ Cronograma
 | ----------- | ----------- | ----------- |
 | Implementação do Algoritmo de Busca Linear | 20/05/2023 | 20/05/2023 |
 | Implementação do Algoritmo de Busca Profundidade | ----------- | ----------- |
-| Implementação do Algoritmo de Busca Dijkstra | 20/05/2023 | 20/05/2023 |
-| Criação da Interface Gráfica |	----------- |	----------- |
+| Implementação do Algoritmo de Busca Dijkstra | ----------- | ----------- |
+| Criação da Interface Gráfica | 21/05/2023 | 21/05/2023 |
 | Integração do Algoritmo com a Interface Gráfica |	22/05/2023 | 23/05/2023 |
 | Apresentação dos Resultados e Análise	 | 31/05/2023	| ----------- |
