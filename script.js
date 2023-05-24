@@ -1,79 +1,112 @@
 var nodes = [
+    { id: 23, label: "Unaí", adjacencias: ["Garapuava"], color: "white" },
+    { id: 22, label: "Garapuava", adjacencias: ["Unaí", "Uruana"], color: "white" },
+    { id: 21, label: "Uruana", adjacencias: ["Garapuava", "Arinos"], color: "white" },
+
+    {
+        id: 1,
+        label: "Arinos",
+        adjacencias: ["Urucuia", "Uruana", "Riachinho", "Chapada Gaúcha"],
+        color: "green",
+    },
+
+    { id: 20, label: "Bonfinópolis", adjacencias: ["Riachinho"], color: "white" },
     {
         id: 19,
-        label: "Arinos",
-        adjacencias: ["Urucuia", "Riachinho", "Uruana", "Chapada Gaúcha"],
+        label: "Riachinho",
+        adjacencias: ["Bonfinópolis", "Arinos"],
         color: "white",
-    },
-    {
-        id: 2,
-        label: "Januaria",
-        adjacencias: ["Itacarambi", "Morro Itapiraçaba"],
-        color: "red",
     },
     {
         id: 3,
         label: "Chapada Gaúcha",
-        adjacencias: ["Serra das Araras"],
+        adjacencias: ["Serra das Araras", "Arinos"],
         color: "white",
     },
     {
         id: 4,
-        label: "Urucuia",
-        adjacencias: ["Pintopolis", "São Romão", "Arinos"],
+        label: "Serra das Araras",
+        adjacencias: ["São Joaquim", "Chapada Gaúcha"],
         color: "white",
     },
     {
         id: 5,
-        label: "Riachinho",
-        adjacencias: ["Bonfinópolis"],
+        label: "São Joaquim",
+        adjacencias: ["Pandeiros", "Serra das Araras"],
         color: "white",
     },
-    { id: 6, label: "Uruana", adjacencias: ["Garapuava"], color: "white" },
+    { id: 6, label: "Pandeiros", adjacencias: ["Tejuco", "São Joaquim"], color: "white" },
+    { id: 7, label: "Tejuco", adjacencias: ["Januaria", "Pandeiros"], color: "white" },
     {
-        id: 7,
-        label: "Serra das Araras",
-        adjacencias: ["São Joaquim"],
+        id: 8,
+        label: "Urucuia",
+        adjacencias: ["Arinos", "São Romão", "Pintopolis"],
         color: "white",
     },
-    { id: 8, label: "Pandeiros", adjacencias: ["Tejuco"], color: "white" },
-    { id: 9, label: "Tejuco", adjacencias: ["Januaria"], color: "white" },
+    {
+        id: 9,
+        label: "Pintopolis",
+        adjacencias: ["Urucuia", "São Francisco"],
+        color: "white",
+    },
     {
         id: 10,
-        label: "São Joaquim",
-        adjacencias: ["Pandeiros"],
+        label: "São Francisco",
+        adjacencias: ["Pintopolis", "Travessão de Minas"],
         color: "white",
     },
-    { id: 11, label: "Morro Itapiraçaba", adjacencias: [], color: "white" },
-    { id: 12, label: "São Romão", adjacencias: [], color: "white" },
-    { id: 13, label: "Bonfinópolis", adjacencias: [], color: "white" },
+    {
+        id: 11,
+        label: "Travessão de Minas",
+        adjacencias: ["São Francisco", "Pedras de Maria da Cruz"],
+        color: "white",
+    },
+    {
+        id: 12,
+        label: "Pedras de Maria da Cruz",
+        adjacencias: ["Travessão de Minas", "Januaria", "Lontra"],
+        color: "white",
+    },
+    { id: 13, label: "São Romão", adjacencias: ["Ubai", "Urucuia"], color: "white" },
     {
         id: 14,
-        label: "Pintopolis",
-        adjacencias: ["São Francisco", "Urucuia"],
+        label: "Ubai",
+        adjacencias: ["São Romão", "Brasilia de minas"],
         color: "white",
     },
-    { id: 15, label: "Garapuava", adjacencias: ["Unaí"], color: "white" },
-    { id: 16, label: "Unaí", adjacencias: [], color: "white" },
+    {
+        id: 15,
+        label: "Brasilia de minas",
+        adjacencias: ["Ubai", "Santa Fé de Minas"],
+        color: "white",
+    },
+    {
+        id: 16,
+        label: "Santa Fé de Minas",
+        adjacencias: ["Japonvar", "Brasilia de minas"],
+        color: "white",
+    },
     {
         id: 17,
-        label: "São Francisco",
-        adjacencias: ["Travessão de Minas", "Pintopolis"],
-        color: "white",
-    },
-    { id: 18, label: "Itacarambi", adjacencias: [], color: "white" },
-    {
-        id: 20,
-        label: "Travessão de Minas",
-        adjacencias: ["Pedras de Maria da Cruz", "São Francisco"],
+        label: "Japonvar",
+        adjacencias: ["Lontra", "Santa Fé de Minas"],
         color: "white",
     },
     {
-        id: 1,
-        label: "Pedras de Maria da Cruz",
-        adjacencias: ["Travessão de Minas"],
-        color: "green",
+        id: 18,
+        label: "Lontra",
+        adjacencias: ["Japonvar", "Pedras de Maria da Cruz"],
+        color: "white",
     },
+
+    {
+        id: 2,
+        label: "Januaria",
+        adjacencias: ["Itacarambi", "Morro Itapiraçaba", "Pedras de Maria da Cruz", "Tejuco"],
+        color: "red",
+    },
+    { id: 24, label: "Morro Itapiraçaba", adjacencias: ["Januaria"], color: "white" },
+    { id: 25, label: "Itacarambi", adjacencias: ["Januaria"], color: "white" },
 ];
 
 var links = [];
@@ -136,6 +169,7 @@ node.append("text")
     .attr("text-anchor", "middle")
     .attr("dy", -15)
     .text(function (d) {
+        // return d.id;
         return d.id + " - " + d.label;
     });
 
@@ -201,7 +235,7 @@ function buscaEmLargura(grafo, inicio, objetivo) {
     while (fila.length > 0) {
         const [no, caminho] = fila.shift();
         visitados.add(no);
-
+        console.log(no)
         if (no === objetivo) {
             return caminho;
         }
@@ -217,7 +251,7 @@ function buscaEmLargura(grafo, inicio, objetivo) {
     return null;
 }
 
-const inicio = "Pedras de Maria da Cruz";
+const inicio = "Arinos";
 const objetivo = "Januaria";
 
 const caminho = buscaEmLargura(grafo, inicio, objetivo);

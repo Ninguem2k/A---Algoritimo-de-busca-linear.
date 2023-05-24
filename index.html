@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src="../Style.css"></script>
-        <link href="Style.css" rel="stylesheet" />
-        <title>Grafo entre Arinos e Januaria</title>
-    </head>
-    <body>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../Style.css"></script>
+    <link href="Style.css" rel="stylesheet" />
+    <title>Grafo entre Arinos e Januaria</title>
+</head>
+
+<body>
+    <div class="cotainer">
         <center>
             <ul class="path-city">
                 <ul id="city-card">
@@ -16,46 +19,42 @@
                 </ul>
             </ul>
         </center>
-
-        <div class="cotainer">
-            <center class="grafo">
-                <div id="svg-container">
-                    <svg
-                        style="transform: scale(1.5)"
-                        width="100%"
-                        height="100%"></svg>
-                </div>
-            </center>
-            <div class="tables">
-                <div class="legendColor">
-                    <table border="1">
-                        <tr>
-                            <td>Cor verde:</td>
-                            <td>Inicio</td>
-                        </tr>
-                        <tr>
-                            <td>Cor Branca:</td>
-                            <td>Cidades/Vilarejos</td>
-                        </tr>
-                        <tr>
-                            <td>Cor Amarela:</td>
-                            <td>Lugares visitados</td>
-                        </tr>
-                        <tr>
-                            <td>Cor Azul:</td>
-                            <td>Caminho selecionado</td>
-                        </tr>
-                        <tr>
-                            <td>Cor vermelha:</td>
-                            <td>Objetivo</td>
-                        </tr>
-                    </table>
-                </div>
-                <table id="legendNode"></table>
+        <center class="grafo">
+            <div id="svg-container">
+                <svg style="transform: scale(1.5)" width="100%" height="100%"></svg>
             </div>
+        </center>
+        <div class="tables">
+            <div class="legendColor">
+                <table border="1">
+                    <tr>
+                        <td>Cor verde:</td>
+                        <td>Inicio</td>
+                    </tr>
+                    <tr>
+                        <td>Cor Branca:</td>
+                        <td>Cidades/Vilarejos</td>
+                    </tr>
+                    <tr>
+                        <td>Cor Amarela:</td>
+                        <td>Lugares visitados</td>
+                    </tr>
+                    <tr>
+                        <td>Cor Azul:</td>
+                        <td>Caminho selecionado</td>
+                    </tr>
+                    <tr>
+                        <td>Cor vermelha:</td>
+                        <td>Objetivo</td>
+                    </tr>
+                </table>
+            </div>
+            <table id="legendNode"></table>
         </div>
+    </div>
 
-        <script src="https://d3js.org/d3.v7.min.js"></script>
-        <script src="script.js"></script>
-    </body>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
 </html>
