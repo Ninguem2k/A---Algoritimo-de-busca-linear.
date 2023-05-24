@@ -4,6 +4,9 @@
 }
 
 .node {
+    font-size: 8px;
+    font-family: cursive;
+    color: #000000;
     stroke: hsl(0, 0%, 0%);
 }
 .link {
@@ -62,4 +65,43 @@ tr {
 
 tr:nth-child(even) {
     background-color: #dcebe6;
+}
+/* Estilo para o caminho percorrido entre cidades */
+.path-city {
+    margin: 0 auto;
+    width: 90%;
+    list-style-type: none;
+    text-align: center;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 10px;
+}
+
+.path-city li {
+    display: inline;
+}
+
+.path-city li:not(:last-child)::after {
+    content: ">";
+    font-size: 15px;
+    margin: 0px 5px 0px 10px;
+}
+
+.path-city li:last-child::after {
+    content: "";
+    margin: 0;
+}
+
+#city-card {
+    width: auto;
+    color: #ffffff;
+    background-color: #4caf50;
+    padding: 5px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+#my-svg {
+    transition: transform 0.3s ease-in-out; /* Transição suave de escala */
 }

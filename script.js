@@ -1,9 +1,9 @@
 var nodes = [
     {
-        id: 1,
+        id: 19,
         label: "Arinos",
         adjacencias: ["Urucuia", "Riachinho", "Uruana", "Chapada Gaúcha"],
-        color: "green",
+        color: "white",
     },
     {
         id: 2,
@@ -20,7 +20,7 @@ var nodes = [
     {
         id: 4,
         label: "Urucuia",
-        adjacencias: ["Pintopolis", "São Romão"],
+        adjacencias: ["Pintopolis", "São Romão", "Arinos"],
         color: "white",
     },
     {
@@ -50,7 +50,7 @@ var nodes = [
     {
         id: 14,
         label: "Pintopolis",
-        adjacencias: ["São Francisco"],
+        adjacencias: ["São Francisco", "Urucuia"],
         color: "white",
     },
     { id: 15, label: "Garapuava", adjacencias: ["Unaí"], color: "white" },
@@ -58,21 +58,21 @@ var nodes = [
     {
         id: 17,
         label: "São Francisco",
-        adjacencias: ["Travessão de Minas"],
+        adjacencias: ["Travessão de Minas", "Pintopolis"],
         color: "white",
     },
     { id: 18, label: "Itacarambi", adjacencias: [], color: "white" },
     {
-        id: 19,
+        id: 20,
         label: "Travessão de Minas",
-        adjacencias: ["Pedras de Maria da Cruz"],
+        adjacencias: ["Pedras de Maria da Cruz", "São Francisco"],
         color: "white",
     },
     {
-        id: 20,
+        id: 1,
         label: "Pedras de Maria da Cruz",
-        adjacencias: [],
-        color: "white",
+        adjacencias: ["Travessão de Minas"],
+        color: "green",
     },
 ];
 
@@ -134,9 +134,9 @@ node.append("circle").attr("r", 10);
 
 node.append("text")
     .attr("text-anchor", "middle")
-    .attr("dy", -10)
+    .attr("dy", -15)
     .text(function (d) {
-        return d.id;
+        return d.id + " - " + d.label;
     });
 
 simulation.on("tick", function () {
@@ -217,7 +217,7 @@ function buscaEmLargura(grafo, inicio, objetivo) {
     return null;
 }
 
-const inicio = "Arinos";
+const inicio = "Pedras de Maria da Cruz";
 const objetivo = "Januaria";
 
 const caminho = buscaEmLargura(grafo, inicio, objetivo);
@@ -230,15 +230,18 @@ if (caminho) {
     console.log("Não há caminho entre os nós.");
 }
 
-var arrayNode = document.getElementsByClassName("node");
 
 function drawn(caminho, res) {
+    var arrayNode = document.getElementsByClassName("node");
     var array = Array.from(visitados);
 
     function loop(index, array) {
         if (index >= array.length) {
             if (res) {
                 drawnCaminho(caminho);
+                return;
+            } else {
+                toPath(caminho, false);
                 return;
             }
         }
@@ -264,8 +267,10 @@ function drawn(caminho, res) {
 }
 
 function drawnCaminho(caminho) {
+    var arrayNode = document.getElementsByClassName("node");
     function loop(index, array) {
         if (index >= array.length) {
+            toPath(caminho, true);
             return;
         }
 
@@ -306,3 +311,21 @@ nodes.forEach(function (objeto) {
 
     tableNodes.appendChild(linha);
 });
+
+function toPath(caminho, res) {
+    var cityCard = document.getElementById("city-card");
+
+
+    if (res) {
+        cityCard.textContent = "";
+        caminho.forEach(function (city) {
+            var cityName = document.createElement("li");
+            cityName.textContent = city;
+            cityCard.appendChild(cityName);
+        });
+    } else {
+        cityCard.textContent = "Não existe conecção até o Objetivo";
+    }
+
+}
+

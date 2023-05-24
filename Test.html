@@ -9,9 +9,22 @@
         <title>Grafo entre Arinos e Januaria</title>
     </head>
     <body>
+        <center>
+            <ul class="path-city">
+                <ul id="city-card">
+                    <label>Buscando o caminho...</label>
+                </ul>
+            </ul>
+        </center>
+
         <div class="cotainer">
             <center class="grafo">
-                <svg width="100%" height="100%"></svg>
+                <div id="svg-container">
+                    <svg
+                        style="transform: scale(1.5)"
+                        width="100%"
+                        height="100%"></svg>
+                </div>
             </center>
             <div class="tables">
                 <div class="legendColor">
@@ -25,12 +38,16 @@
                             <td>Cidades/Vilarejos</td>
                         </tr>
                         <tr>
-                            <td>Cor vermelha:</td>
-                            <td>Fim</td>
+                            <td>Cor Amarela:</td>
+                            <td>Lugares visitados</td>
                         </tr>
                         <tr>
                             <td>Cor Azul:</td>
                             <td>Caminho selecionado</td>
+                        </tr>
+                        <tr>
+                            <td>Cor vermelha:</td>
+                            <td>Objetivo</td>
                         </tr>
                     </table>
                 </div>
