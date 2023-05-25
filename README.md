@@ -1,4 +1,4 @@
-# Projeto de Algoritmos de Busca
+#  [Projeto de Algoritmos de Busca](https://ninguem2k.github.io/Algoritimos-de-busca)
 
 Este projeto tem como objetivo implementar e analisar diferentes algoritmos de busca, começando pelo algoritmo de busca linear. Serão utilizadas as linguagens JavaScript, CSS e HTML, e a biblioteca D3.js será utilizada para visualização dos dados. O projeto está sendo desenvolvido pelo aluno Cássio Gabriel, estudante de BSI no 7º período do IFNMG.
 
@@ -16,7 +16,7 @@ O objetivo deste projeto é implementar e analisar diferentes algoritmos de busc
 1. **Implementação do Algoritmo de Busca Linear**
 
     - Descrição: Implementar o algoritmo de busca linear em JavaScript.
-    - Responsável: Cássio Gabriel
+    - Responsável: Cássio Gabriel / Tiago Marques
     - Prazo: 20/05/2023
 
 2. **Criação da Interface Gráfica**
