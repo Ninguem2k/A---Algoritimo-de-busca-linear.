@@ -107,3 +107,39 @@ tr:nth-child(even) {
 #my-svg {
     transition: transform 0.3s ease-in-out;
 }
+
+.custom-select {
+    display: inline-block;
+    position: relative;
+    font-family: Arial, sans-serif;
+    margin: 5px;
+}
+
+/* Estilo para a seta do select */
+.custom-select::after {
+    content: '\25BE';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Estilo para a opção selecionada */
+.custom-select select {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* Estilo para as opções do select */
+.custom-select select option {
+    padding: 10px;
+    background-color: #fff;
+    color: #333;
+}

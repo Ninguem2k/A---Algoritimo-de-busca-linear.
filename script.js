@@ -128,7 +128,7 @@ nodes.forEach(function (node) {
 });
 
 var width = 500;
-var height = 500;
+var height = 400;
 
 var svg = d3.select("svg").attr("width", width).attr("height", height);
 
@@ -251,19 +251,67 @@ function buscaEmLargura(grafo, inicio, objetivo) {
     return null;
 }
 
+function buscaEmProfundidade(grafo, inicio, objetivo) {
+    const pilha = [];
+
+    pilha.push([inicio, [inicio]]);
+
+    while (pilha.length > 0) {
+        const [no, caminho] = pilha.pop();
+        visitados.add(no);
+        console.log(no);
+        if (no === objetivo) {
+            return caminho;
+        }
+
+        const vizinhos = grafo[no];
+
+        vizinhos.forEach(vizinho => {
+            if (!visitados.has(vizinho)) {
+                pilha.push([vizinho, [...caminho, vizinho]]);
+            }
+        });
+    }
+    return null;
+}
+
 const inicio = "Arinos";
 const objetivo = "Januaria";
 
-const caminho = buscaEmLargura(grafo, inicio, objetivo);
+var caminho = ""
 
-if (caminho) {
-    console.log(`Caminho encontrado: ${caminho}`);
-    drawn(caminho, true);
-} else {
-    drawn(caminho, false);
-    console.log("Não há caminho entre os nós.");
+const dropdownSelectIA = document.getElementById('selectIA');
+
+var statusSelectALG = false;
+dropdownSelectIA.addEventListener('change', () => {
+    selectALG(dropdownSelectIA.value, statusSelectALG)
+    statusSelectALG = true;
+});
+
+function selectALG(selectedOption, status) {
+    var caminho = ""
+
+    if (status === true) {
+        alert("Aperte F5 ou recarregue a pagina para executar outra busca!")
+        return
+    }
+
+    if (selectedOption === "Linear") {
+        caminho = buscaEmLargura(grafo, inicio, objetivo);
+    } else if (selectedOption === "Profundidade") {
+        caminho = buscaEmProfundidade(grafo, inicio, objetivo);
+    } else {
+        alert("Algo está errado. Por favor, selecione uma opção de IA.");
+    }
+
+    if (caminho != "") {
+        console.log(`Caminho encontrado: ${caminho}`);
+        drawn(caminho, true);
+    } else {
+        drawn(caminho, false);
+        console.log("Não há caminho entre os nós.");
+    }
 }
-
 
 function drawn(caminho, res) {
     var arrayNode = document.getElementsByClassName("node");
@@ -362,4 +410,3 @@ function toPath(caminho, res) {
     }
 
 }
-

@@ -13,6 +13,13 @@
 <body>
     <div class="cotainer">
         <center>
+            <div class="custom-select">
+                <select id="selectIA">
+                    <option value="">Selecione um Algoritimo</option>
+                    <option value="Linear">Busca Linear</option>
+                    <option value="Profundidade">Busca em Profundidade</option>
+                </select>
+            </div>
             <ul class="path-city">
                 <ul id="city-card">
                     <label>Buscando o caminho...</label>
@@ -21,7 +28,7 @@
         </center>
         <center class="grafo">
             <div id="svg-container">
-                <svg style="transform: scale(1.5)" width="100%" height="100%"></svg>
+                <svg style="transform: scale(1.5); margin: 50px;" width="100%" height="100%"></svg>
             </div>
         </center>
         <div class="tables">
