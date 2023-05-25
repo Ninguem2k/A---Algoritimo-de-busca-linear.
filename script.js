@@ -227,15 +227,15 @@ links.forEach(function (link) {
 console.log(grafo);
 const visitados = new Set();
 
-function buscaEmLargura(grafo, inicio, objetivo) {
-    const fila = [];
+function buscaEmProfundidade(grafo, inicio, objetivo) {
+    const pilha = [];
 
-    fila.push([inicio, [inicio]]);
+    pilha.push([inicio, [inicio]]);
 
-    while (fila.length > 0) {
-        const [no, caminho] = fila.shift();
+    while (pilha.length > 0) {
+        const [no, caminho] = pilha.pop();
         visitados.add(no);
-        console.log(no)
+        console.log(no);
         if (no === objetivo) {
             return caminho;
         }
@@ -244,7 +244,7 @@ function buscaEmLargura(grafo, inicio, objetivo) {
 
         vizinhos.forEach(vizinho => {
             if (!visitados.has(vizinho)) {
-                fila.push([vizinho, [...caminho, vizinho]]);
+                pilha.push([vizinho, [...caminho, vizinho]]);
             }
         });
     }
@@ -254,7 +254,8 @@ function buscaEmLargura(grafo, inicio, objetivo) {
 const inicio = "Arinos";
 const objetivo = "Januaria";
 
-const caminho = buscaEmLargura(grafo, inicio, objetivo);
+const caminho = buscaEmProfundidade(grafo, inicio, objetivo);
+
 
 if (caminho) {
     console.log(`Caminho encontrado: ${caminho}`);
@@ -362,4 +363,5 @@ function toPath(caminho, res) {
     }
 
 }
+
 
